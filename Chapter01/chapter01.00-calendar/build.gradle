@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.gretty' version '4.0.3'
+	id 'war'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.packtpub.springsecurity'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+gretty {
+	servletContainer = 'tomcat10'
+	contextPath = '/'
+	fileLogEnabled = false
+}
+
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework:spring-framework-bom:6.1.4'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework:spring-webmvc'
+	implementation 'org.springframework:spring-jdbc'
+	// Servlets
+	providedCompile 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+	// JSR-303 Validation Support
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+	// H2 db
+	implementation 'com.h2database:h2:2.2.224'
+	implementation 'ch.qos.logback:logback-classic:1.4.12'
+	// Additional Thymeleaf dependencies
+	implementation 'org.thymeleaf:thymeleaf-spring6:3.1.2.RELEASE'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0'
+
+	implementation 'org.webjars:webjars-locator:0.50'
+	implementation 'org.webjars:bootstrap:5.3.2'
+}
