@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>User Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-$END$
+<body class="container mt-5">
+<h2 th:text="'Profile of ' + ${username}"></h2>
+
+<p>Logged in as: <strong th:text="${currentUser}"></strong></p>
+
+<!-- Only show edit form if this user matches -->
+<div th:if="${username == currentUser}">
+  <form th:action="@{'/profile/' + ${username} + '/edit'}" method="post">
+    <label>Update Info:</label>
+    <input type="text" name="newInfo" class="form-control mb-2" required/>
+    <button class="btn btn-primary">Update Profile</button>
+  </form>
+</div>
+
+<p th:if="${username != currentUser}" class="text-muted mt-3">
+  You can only edit your own profile.
+</p>
 </body>
 </html>
