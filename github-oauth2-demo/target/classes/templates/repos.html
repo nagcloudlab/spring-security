@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>GitHub Repos</title></head>
+<body>
+  <h1>GitHub Repositories</h1>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Link</th>
+    </tr>
+    <tr th:each="repo : ${repos}">
+      <td th:text="${repo.name}"></td>
+      <td><a th:href="${repo.html_url}" th:text="${repo.html_url}" target="_blank"></a></td>
+    </tr>
+  </table>
+</body>
+</html>
